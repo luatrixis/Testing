@@ -1,0 +1,42 @@
+getgenv().Settings = {
+    Comets = {
+        Webhook = "https://discord.com/api/webhooks/1098425005370507274/wfaPhNS7m920Z46wLn9qX6Aasvqp3xxVMqFcbAMXE-NUIVI5ab1cHS2NqAsHwNad_pvR",
+        SendDiscordNotifications = true,
+        MassiveCometWebhook = "https://discord.com/api/webhooks/1098616976378704085/6rOzuLUfD6OwaORGPPFGpVYmu2TBA8XguhMK3tKHmJu3HtyrSHrgPqflL8YL5yaCLcHf",
+        SendMassiveCometNotifications = true,
+        EmergencyHop = true,
+        EmergencyTime = 300, --// 10 Mins
+        UseTripleDamage = true,
+    },
+    Statistics = {
+        Webhook = "https://discord.com/api/webhooks/1098617193735925861/JDtV_arkMDvNtwY1ew2UNapI3eoq1QqCdJE6bVfPDb3dinIOfDHiRHpk5RbrYzTNOoYR",
+        SendDiscordNotifications = true,
+        TimePerSend = 3600 --// 3600 = Per Hour 
+    },
+    Gamemode = "Normal", --// Hardcore/Normal
+    Performance = {
+        Disable3DRendering = trye,
+        FpsCap = 45,
+        SetFpsCap = true,
+    },
+    UseExpirementalHopper = true
+}
+script_key = "ndVGDqQbmdZIIJlzHikipWgdYCPTxeIE"
+
+
+--// DO NOT TOUCH THIS PART
+l_script_id  = "9043a9ebde5661a35cedaf5c1fc80324";
+local name = 'luarmor__fastload__tmp__'..l_script_id..'.lua'
+l_fastload_enabled = function(op)
+    if op == 'flush' then
+        writefile(name, game:HttpGet("https://api.luarmor.net/files/v3/l/"..l_script_id..".lua"))
+    end
+    l_fastload_lua()
+end
+l_fastload_lua = function()    
+    local j = {pcall(readfile, name)}
+    local s, t = unpack(j)
+    if not s then l_fastload_enabled('flush') return end
+    loadstring(t)(j)
+end
+l_fastload_lua()
